@@ -1,0 +1,16 @@
+<html>
+<head>
+    <title>
+        Adicionar una imagen
+    </title>
+</head>
+<body>
+{% block content %}
+    <form action="{% url 'images:addImage' %}" enctype="multipart/form-data" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Adicionar"/>
+    </form>
+{% endblock %}
+</body>
+</html>

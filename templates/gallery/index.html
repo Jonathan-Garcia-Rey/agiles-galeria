@@ -1,4 +1,13 @@
-<h3 align=“center”>Galería de imágenes</h3>
-{% for image in images_list %}
-<img src=“{{image.url}}” width=“300px” height=“300px”>
-{% endfor %}
+<html>
+<body>
+<h3> GALERIA </h3>
+{% if image.imageFile == None %}
+    <H3>NORMAL</H3>
+    <img src="{{ image.url }}" width=“300px" height=“300px"/>
+{% else %}
+    <H3>ELSE</H3>
+    <img src=“/{{ image.imageFile }}" width=“300px" height=“300px"/>
+{% endif %}
+</body>
+</html>
+
