@@ -6,15 +6,21 @@
 </head>
 <body>
 <h3> GALERIA </h3>
-{% for image in images_list %}
-    {% if image.imageFile == None %}
-        <H3>NORMAL "{{ image.url }}"</H3>
-        <img src={{ image.url }} width=“1000px" height=“1000px"/>
-    {% else %}
-        <H3>ELSE {{ image.imageFile }}</H3>
-        <img src=/{{ image.imageFile }} width=“300px" height=“300px"/>
-    {% endif %}
-{% endfor %}
+<div id="images"></div>
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    (function () {
+        $.getJSON("http://localhost:8000/gallery/").done(function (data) {
+            $.each(data, function (i, item) {
+                if (item.fields.imageFile == "" || item.fields.imageFile == undefined) {
+                    $("#images").prepend('<img src="' + item.fields.url + '" width="300px" height="300px">');
+                } else {
+                    $("#images").prepend('<img src="http://localhost:8000/' + item.fields.imageFile + '" width="300px" height="300px">');
+                }
+            });
+        });
+    })();
+</script>
 </body>
 </html>
 
